@@ -6,4 +6,11 @@
 
   <color name="page1">#03A9F4</color>
   <color name="page2">#4CAF50</color>
+  <!--<color name="page3">#3644315</color>-->
+  <!--<color name="page4">#3618715</color>-->
+
+  <color name="red">#FF0000</color>
+  <color name="gray">#A9A9A9</color>
+
+
 </resources>

@@ -1,8 +1,10 @@
 package com.salmin.onboardingdemo;
 
 import android.animation.ArgbEvaluator;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 
@@ -74,17 +76,18 @@ public class IntroPageTransformer implements ViewPager.PageTransformer {
 			}// Finally, it can be useful to know the direction
 			// of the user's swipe - if we're entering or exiting.
 			// This is quite simple:
+			Log.d(TAG, "transformPage: argB :: " + argbEvaluator.evaluate(Math.abs(position), Color.RED, Color.GRAY));
 			if (position < 0) {
-				Log.d(TAG, "transformPage: position :: " + position);
-				Log.d(TAG, "transformPage: pageWidth :: " + pageWidth);
-				Log.d(TAG, "transformPage: pageWidthTimesPosition :: " + pageWidthTimesPosition);
-				Log.d(TAG, "transformPage: absPosition :: " + absPosition);
+//				Log.d(TAG, "transformPage: position :: " + position);
+//				Log.d(TAG, "transformPage: pageWidth :: " + pageWidth);
+//				Log.d(TAG, "transformPage: pageWidthTimesPosition :: " + pageWidthTimesPosition);
+//				Log.d(TAG, "transformPage: absPosition :: " + absPosition);
 
 				// Create your out animation here
-				page.setBackgroundColor((Integer) argbEvaluator.evaluate(-position, R.color.page1, R.color.page2));
+				page.setBackgroundColor((Integer) argbEvaluator.evaluate(Math.abs(position), IntroAdapter.GREEN, IntroAdapter.PURPLE));
 			} else {
 				// Create your in animation here
-				page.setBackgroundColor((Integer) argbEvaluator.evaluate(-position, R.color.page2, R.color.page1));
+				page.setBackgroundColor((Integer) argbEvaluator.evaluate(Math.abs(position), IntroAdapter.PURPLE, IntroAdapter.GREEN));
 			}
 		}
 	}
