@@ -1,11 +1,15 @@
 package com.salmin.onboardingdemo;
 
+import android.animation.ArgbEvaluator;
+import android.util.Log;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 
 public class IntroPageTransformer implements ViewPager.PageTransformer {
 
+	private static final String TAG = IntroPageTransformer.class.getName();
+	private ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
 	@Override
 	public void transformPage(@NonNull View page, float position) {
@@ -58,6 +62,7 @@ public class IntroPageTransformer implements ViewPager.PageTransformer {
 			// content while fading out
 			View computer = page.findViewById(R.id.computer);
 
+
 			// We're attempting to create an effect for a View
 			// specific to one of the pages in our ViewPager.
 			// In other words, we need to check that we're on
@@ -70,9 +75,16 @@ public class IntroPageTransformer implements ViewPager.PageTransformer {
 			// of the user's swipe - if we're entering or exiting.
 			// This is quite simple:
 			if (position < 0) {
+				Log.d(TAG, "transformPage: position :: " + position);
+				Log.d(TAG, "transformPage: pageWidth :: " + pageWidth);
+				Log.d(TAG, "transformPage: pageWidthTimesPosition :: " + pageWidthTimesPosition);
+				Log.d(TAG, "transformPage: absPosition :: " + absPosition);
+
 				// Create your out animation here
+				page.setBackgroundColor((Integer) argbEvaluator.evaluate(-position, R.color.page1, R.color.page2));
 			} else {
 				// Create your in animation here
+				page.setBackgroundColor((Integer) argbEvaluator.evaluate(-position, R.color.page2, R.color.page1));
 			}
 		}
 	}
